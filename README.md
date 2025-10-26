@@ -51,3 +51,142 @@ Used the private key file (`.pem`) to connect securely.
 First, adjusted file permissions:
 ```bash
 chmod 400 privatekeyfile.pem
+
+Then connected to the server:
+
+ssh -i privatekeyfile.pem ubuntu@<EC2-Public-IP>
+
+
+After logging in, switched to the root user:
+
+sudo su
+
+🌐 3. Installing and Configuring Apache Web Server
+
+Installed Apache2:
+
+sudo apt-get install apache2 -y
+
+
+Verified installation:
+
+sudo systemctl status apache2
+
+
+The Apache service was active and running, ready to handle web requests.
+
+🗃️ 4. Installing MariaDB (MySQL) Database
+
+Installed MariaDB server and client:
+
+sudo apt-get install mariadb-server mariadb-client -y
+
+
+Secured the installation:
+
+sudo mysql_secure_installation
+
+
+Configured by:
+
+Setting a root password.
+
+Disabling remote root login.
+
+Removing anonymous users.
+
+Deleting the test database.
+
+Reloading privilege tables.
+
+This ensured the database was properly hardened for production use.
+
+💻 5. Installing PHP and Required Extensions
+
+Installed PHP and necessary modules:
+
+sudo apt-get install php php-mysql php-gd php-cli php-common -y
+
+
+At this point, the LAMP stack was fully functional.
+
+⚙️ 6. Managing Services with Systemd
+
+Enabled services to start on boot:
+
+sudo systemctl enable mariadb apache2
+
+
+Restarted services:
+
+sudo systemctl restart mariadb apache2
+
+
+Verified their status:
+
+sudo systemctl status mariadb apache2
+
+
+All services were running successfully.
+
+🧩 7. Installing and Configuring WordPress
+a. Downloading and Extracting WordPress
+
+Downloaded the latest version:
+
+wget https://wordpress.org/latest.tar.gz
+
+
+Extracted files:
+
+tar -xzf latest.tar.gz
+
+
+Moved WordPress to Apache’s web root and configured database connection settings.
+After setup, WordPress became accessible through the instance’s public IP.
+
+🌍 8. Verifying Deployment
+
+Opened the EC2 public IP in a web browser — the WordPress installation screen appeared successfully.
+This confirmed that the WordPress site was live and fully functional on AWS.
+
+✅ 9. Results
+
+WordPress successfully deployed using the LAMP stack on AWS.
+
+The website was responsive and accessible publicly.
+
+Showcased proficiency in AWS EC2, Linux administration, and web hosting.
+
+🚧 10. Future Improvements
+
+While Apache performed well, future optimization can include migrating to NGINX.
+NGINX is an event-driven web server that handles multiple concurrent requests more efficiently.
+This would enhance:
+
+Scalability
+
+Performance
+
+High availability
+
+🏁 Conclusion
+
+This project provided practical experience in:
+
+Cloud-based web hosting using AWS
+
+LAMP stack configuration
+
+Server and database management
+
+It successfully demonstrated my capability to deploy, configure, and maintain a WordPress environment on AWS using best DevOps and Linux administration practices.
+
+🧾 Tech Stack Used
+Component	Description
+AWS EC2	Cloud compute instance for hosting
+Ubuntu 20.04 LTS	Operating system
+Apache2	Web server
+MariaDB	Database engine
+PHP	Server-side scripting
+WordPress	CMS platform
